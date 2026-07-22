@@ -10,25 +10,30 @@ class UpdateUserRequestDict(TypedDict):
     """
     Описание структуры запроса на обновление пользователя.
     """
+
     email: str | None
     lastName: str | None
     firstName: str | None
     middleName: str | None
 
+
 class User(TypedDict):
     """
     Описание структуры пользователя.
     """
+
     id: str
     email: str
     lastName: str
     firstName: str
     middleName: str
 
+
 class GetUserResponseDict(TypedDict):
     """
     Описание структуры ответа получения пользователя.
     """
+
     user: User
 
 

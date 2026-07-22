@@ -8,9 +8,7 @@ from clients.authentication.authentication_client import (
 )
 
 
-class AuthenticationUserDict(
-    TypedDict
-):
+class AuthenticationUserDict(TypedDict):
     email: str
     password: str
 

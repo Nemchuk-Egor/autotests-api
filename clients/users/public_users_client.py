@@ -18,20 +18,24 @@ class CreateRequestDict(TypedDict):
     firstName: str
     middleName: str
 
+
 class User(TypedDict):
     """
     Описание структуры пользователя.
     """
+
     id: str
     email: str
     lastName: str
     firstName: str
     middleName: str
 
+
 class CreateUserResponseDict(TypedDict):
     """
     Описание структуры ответа создания пользователя.
     """
+
     user: User
 
 

@@ -10,6 +10,7 @@ class File(TypedDict):
     """
     Описание структуры файла.
     """
+
     id: str
     url: str
     filename: str
@@ -20,6 +21,7 @@ class CreateFileRequestDict(TypedDict):
     """
     Описание структуры запроса на создание файла.
     """
+
     filename: str
     directory: str
     upload_file: str
@@ -29,6 +31,7 @@ class CreateFileResponseDict(TypedDict):
     """
     Описание структуры ответа создания файла.
     """
+
     file: File
 
 
@@ -56,7 +59,7 @@ class FilesClient(APIClient):
         return self.post(
             "/api/v1/files",
             data=request,
-            files={"upload_file": open(request['upload_file'], 'rb')}
+            files={"upload_file": open(request["upload_file"], "rb")},
         )
 
     def delete_file_api(self, file_id: str) -> Response:
