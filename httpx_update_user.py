@@ -1,8 +1,8 @@
 import httpx
-from tools.faker import get_random_email
+from tools.faker import fake
 
 users_create_payload = {
-    "email": get_random_email(),
+    "email": fake.email(),
     "password": "string",
     "lastName": "string",
     "firstName": "string",
@@ -31,7 +31,7 @@ get_user_headers = {
 }
 users_id_payload = users_create_response_data["user"]["id"]
 users_updated_payload = {
-    "email": get_random_email(),
+    "email": fake.email(),
     "lastName": "string",
     "firstName": "string",
     "middleName": "string",
