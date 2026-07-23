@@ -2,7 +2,6 @@ from pydantic import BaseModel, Field, ConfigDict
 
 
 class Exercise(BaseModel):
-
     model_config = ConfigDict(populate_by_name=True)
 
     id: str
@@ -16,7 +15,7 @@ class Exercise(BaseModel):
 
 
 class GetExercisesResponseSchema(BaseModel):
-    exercise: Exercise
+    exercises: list[Exercise]
 
 
 class GetExerciseResponseSchema(BaseModel):
@@ -35,6 +34,8 @@ class GetExercisesQuerySchema(BaseModel):
     """
     Описание структуры запроса на получение списка упражнений.
     """
+
+    model_config = ConfigDict(populate_by_name=True)
 
     course_id: str = Field(alias="courseId")
 

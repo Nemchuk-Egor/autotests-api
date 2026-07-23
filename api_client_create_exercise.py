@@ -2,7 +2,10 @@ from clients.private_http_builder import AuthenticationUserSchema
 from clients.courses.courses_client import get_courses_client
 from clients.courses.courses_schema import CreateCourseRequestSchema
 from clients.exercises.exercises_client import get_exercises_client
-from clients.exercises.exercises_schema import CreateExerciseRequestSchema
+from clients.exercises.exercises_schema import (
+    CreateExerciseRequestSchema,
+    GetExercisesQuerySchema,
+)
 from clients.files.files_client import get_files_client
 from clients.files.files_schema import CreateFileRequestSchema
 from clients.users.users_schema import CreateUserRequestSchema
