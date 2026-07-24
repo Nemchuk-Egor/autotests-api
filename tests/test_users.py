@@ -18,7 +18,3 @@ def test_create_user():
     assert_create_user_response(response_data, request)
 
     validate_json_schema(response_data, response.json())
-
-
-
-
