@@ -9,8 +9,9 @@ from tools.assertions.base import assert_status_code
 from http import HTTPStatus
 from tools.assertions.authentication import assert_login_response
 from tools.assertions.schema import validate_json_schema
+import pytest
 
-
+@pytest.mark.authentication
 def test_login():
     public_user_client = get_public_users_client()
 
