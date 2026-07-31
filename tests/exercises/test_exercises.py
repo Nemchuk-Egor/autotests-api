@@ -90,3 +90,7 @@ class TestExercises:
         assert_status_code(response.status_code, HTTPStatus.OK)
         assert_update_exercise_response(response_data, request)
         validate_json_schema(response.json(), response_data.model_json_schema())
+
+
+def test_delete_exercise():
+    pass

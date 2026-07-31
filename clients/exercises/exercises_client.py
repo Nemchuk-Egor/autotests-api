@@ -83,7 +83,7 @@ class ExercisesClient(APIClient):
         return self.patch(
             f"/api/v1/exercises/{exercise_id}",
             json=request.model_dump(
-                by_alias=True, exclude_none=True, exclude_unset=True
+                by_alias=True, exclude_none=True
             ),
         )
 

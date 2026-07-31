@@ -57,4 +57,6 @@ def assert_update_exercise_response(
     assert_equal(actual.exercise.min_score, expected.min_score, "min_score")
     assert_equal(actual.exercise.description, expected.description, "description")
     assert_equal(actual.exercise.order_index, expected.order_index, "order_index")
-    assert_equal(actual.exercise.estimated_time, expected.estimated_time, "estimated_time")
+    assert_equal(
+        actual.exercise.estimated_time, expected.estimated_time, "estimated_time"
+    )
