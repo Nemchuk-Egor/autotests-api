@@ -25,6 +25,14 @@ class CreateFileRequestSchema(BaseModel):
     upload_file: str
 
 
+class GetFileResponseSchema(BaseModel):
+    """
+    Описание структуры ответа запроса файла.
+    """
+
+    file: FileSchema
+
+
 class CreateFileResponseSchema(BaseModel):
     """
     Описание структуры ответа создания файла.
