@@ -83,3 +83,19 @@ class UpdateCourseRequestSchema(BaseModel):
     estimated_time: str | None = Field(
         alias="estimatedTime", default_factory=fake.estimated_time
     )
+
+
+class UpdateCourseResponseSchema(BaseModel):
+    """
+    Описание структуры ответа обновления курса.
+    """
+
+    course: Course
+
+
+class GetCoursesResponseSchema(BaseModel):
+    """
+    Описание структуры ответа на получение списка курсов.
+    """
+
+    courses: list[Course]
