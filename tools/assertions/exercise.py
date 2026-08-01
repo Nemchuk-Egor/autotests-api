@@ -7,6 +7,10 @@ from clients.exercises.exercises_schema import (
     UpdateExerciseRequestSchema,
 )
 from tools.assertions.base import assert_equal
+from tools.assertions.errors import (
+    InternalErrorResponseSchema,
+    assert_internal_error_response,
+)
 
 
 def assert_create_exercise_response(
@@ -60,3 +64,9 @@ def assert_update_exercise_response(
     assert_equal(
         actual.exercise.estimated_time, expected.estimated_time, "estimated_time"
     )
+
+
+def assert_exercise_not_found_response(actual: InternalErrorResponseSchema):
+    expected = InternalErrorResponseSchema(detail="Exercise not found")
+
+    assert_internal_error_response(actual, expected)
