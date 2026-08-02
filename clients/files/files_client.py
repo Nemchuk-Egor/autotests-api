@@ -1,4 +1,5 @@
 from httpx import Response
+import allure
 
 from clients.api_client import APIClient
 from clients.files.files_schema import CreateFileRequestSchema, CreateFileResponseSchema
@@ -13,6 +14,7 @@ class FilesClient(APIClient):
     Клиент для работы с /api/v1/files
     """
 
+    @allure.step("Get file by id {file_id}")
     def get_file_api(self, file_id: str) -> Response:
         """
         Метод получения файла.
@@ -22,6 +24,7 @@ class FilesClient(APIClient):
         """
         return self.get(f"/api/v1/files/{file_id}")
 
+    @allure.step("Create file")
     def create_file_api(self, request: CreateFileRequestSchema) -> Response:
         """
         Метод создания файла.
@@ -35,6 +38,7 @@ class FilesClient(APIClient):
             files={"upload_file": open(request.upload_file, "rb")},
         )
 
+    @allure.step("Delete file by id {file_id}")
     def delete_file_api(self, file_id: str) -> Response:
         """
         Метод удаления файла.
@@ -44,6 +48,7 @@ class FilesClient(APIClient):
         """
         return self.delete(f"/api/v1/files/{file_id}")
 
+    @allure.step("Create file")
     def create_file(self, request: CreateFileRequestSchema) -> CreateFileResponseSchema:
         response = self.create_file_api(request)
         return CreateFileResponseSchema.model_validate_json(response.text)

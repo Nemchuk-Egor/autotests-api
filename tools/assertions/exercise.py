@@ -13,8 +13,10 @@ from tools.assertions.errors import (
     assert_internal_error_response,
 )
 from tools.assertions.base import assert_length
+import allure
 
 
+@allure.step("Check create exercise response")
 def assert_create_exercise_response(
     actual: CreateExerciseResponseSchema, expected: CreateExerciseRequestSchema
 ):
@@ -34,6 +36,7 @@ def assert_create_exercise_response(
     )
 
 
+@allure.step("Check exercise")
 def assert_exercise(actual: Exercise, expected: Exercise):
     assert_equal(actual.id, expected.id, "id")
     assert_equal(actual.title, expected.title, "title")
@@ -45,12 +48,14 @@ def assert_exercise(actual: Exercise, expected: Exercise):
     assert_equal(actual.estimated_time, expected.estimated_time, "estimated_time")
 
 
+@allure.step("Check get exercise response")
 def assert_get_exercise_response(
     actual: GetExerciseResponseSchema, expected: CreateExerciseResponseSchema
 ):
     assert_exercise(actual.exercise, expected.exercise)
 
 
+@allure.step("Check update exercise response")
 def assert_update_exercise_response(
     actual: UpdateExerciseResponseSchema, expected: UpdateExerciseRequestSchema
 ):
@@ -68,12 +73,14 @@ def assert_update_exercise_response(
     )
 
 
+@allure.step("Check exercise not found response")
 def assert_exercise_not_found_response(actual: InternalErrorResponseSchema):
     expected = InternalErrorResponseSchema(detail="Exercise not found")
 
     assert_internal_error_response(actual, expected)
 
 
+@allure.step("Check get exercises response")
 def assert_get_exercises_response(
     get_exercises_response: GetExercisesResponseSchema,
     create_exercise_response: list[CreateExerciseResponseSchema],
