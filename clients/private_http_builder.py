@@ -2,6 +2,7 @@ from httpx import Client
 from pydantic import BaseModel
 from functools import lru_cache
 from clients.authentication.authentication_client import get_authentication_client
+from clients.curl_event_hook import curl_event_hook
 
 # Импортируем модель LoginRequestSchema
 from clients.authentication.authentication_schema import LoginRequestSchema
@@ -29,4 +30,5 @@ def get_private_http_client(user: AuthenticationUserSchema) -> Client:
         base_url="http://localhost:8000",
         # Значения теперь извлекаем не по ключу, а через атрибуты
         headers={"Authorization": f"Bearer {login_response.token.access_token}"},
+        event_hooks={"request": [curl_event_hook]}
     )
