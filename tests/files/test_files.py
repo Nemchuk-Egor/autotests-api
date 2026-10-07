@@ -3,6 +3,7 @@ from http import HTTPStatus
 import pytest
 import allure
 
+from config import settings
 from tools.allure.tags import AllureTag
 from tools.allure.epics import AllureEpic  # Импортируем enum AllureEpic
 from tools.allure.features import AllureFeature  # Импортируем enum AllureFeature
@@ -43,7 +44,7 @@ class TestFiles:
     @allure.sub_suite(AllureStory.CREATE_ENTITY)
     @allure.title("Create file")
     def test_create_files(self, files_client: FilesClient):
-        request = CreateFileRequestSchema(upload_file="./testdata/files/image.png")
+        request = CreateFileRequestSchema(upload_file=settings.test_data.image_png_file)
         response = files_client.create_file_api(request)
         response_data = CreateFileResponseSchema.model_validate_json(response.text)
 
@@ -71,7 +72,7 @@ class TestFiles:
     @allure.title("Create file with empty filename")
     def test_create_file_with_empty_filename(self, files_client: FilesClient):
         request = CreateFileRequestSchema(
-            filename="", upload_file="./testdata/files/image.png"
+            filename="", upload_file=settings.test_data.image_png_file
         )
         response = files_client.create_file_api(request)
         response_data = ValidationErrorResponseSchema.model_validate_json(response.text)
@@ -87,7 +88,7 @@ class TestFiles:
     @allure.title("Create file with empty directory")
     def test_create_file_with_empty_directory(self, files_client: FilesClient):
         request = CreateFileRequestSchema(
-            directory="", upload_file="./testdata/files/image.png"
+            directory="", upload_file=settings.test_data.image_png_file
         )
         response = files_client.create_file_api(request)
         response_data = ValidationErrorResponseSchema.model_validate_json(response.text)
