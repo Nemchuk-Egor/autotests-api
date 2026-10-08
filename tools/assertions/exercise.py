@@ -14,6 +14,9 @@ from tools.assertions.errors import (
 )
 from tools.assertions.base import assert_length
 import allure
+from tools.logger import get_logger
+
+logger = get_logger("EXERCISE_ASSERTIONS")
 
 
 @allure.step("Check create exercise response")
@@ -24,6 +27,8 @@ def assert_create_exercise_response(
     Проверяет, что ответ на создание задания соответствует запросу.
     Сравниваются все поля: заголовок, идентификатор курса, баллы, описание, порядковый индекс, оценочное время.
     """
+
+    logger.info("Check create exercise response")
 
     assert_equal(actual.exercise.title, expected.title, "title")
     assert_equal(actual.exercise.course_id, expected.course_id, "course_id")
@@ -38,6 +43,8 @@ def assert_create_exercise_response(
 
 @allure.step("Check exercise")
 def assert_exercise(actual: Exercise, expected: Exercise):
+
+    logger.info("Check exercise")
     assert_equal(actual.id, expected.id, "id")
     assert_equal(actual.title, expected.title, "title")
     assert_equal(actual.course_id, expected.course_id, "course_id")
@@ -52,6 +59,7 @@ def assert_exercise(actual: Exercise, expected: Exercise):
 def assert_get_exercise_response(
     actual: GetExerciseResponseSchema, expected: CreateExerciseResponseSchema
 ):
+    logger.info("Check get exercise response")
     assert_exercise(actual.exercise, expected.exercise)
 
 
@@ -63,6 +71,8 @@ def assert_update_exercise_response(
     Проверяет, что ответ на обновление задания соответствует запросу.
     Сравниваются все поля: заголовок, баллы, описание, порядковый индекс, оценочное время.
     """
+
+    logger.info("Check update exercise response")
     assert_equal(actual.exercise.title, expected.title, "title")
     assert_equal(actual.exercise.max_score, expected.max_score, "max_score")
     assert_equal(actual.exercise.min_score, expected.min_score, "min_score")
@@ -75,6 +85,8 @@ def assert_update_exercise_response(
 
 @allure.step("Check exercise not found response")
 def assert_exercise_not_found_response(actual: InternalErrorResponseSchema):
+
+    logger.info("Check exercise not found response")
     expected = InternalErrorResponseSchema(detail="Exercise not found")
 
     assert_internal_error_response(actual, expected)
@@ -86,6 +98,7 @@ def assert_get_exercises_response(
     create_exercise_response: list[CreateExerciseResponseSchema],
 ):
 
+    logger.info("Check get exercises response")
     assert_length(
         get_exercises_response.exercises, create_exercise_response, "exercises"
     )
